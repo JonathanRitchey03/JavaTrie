@@ -1,30 +1,36 @@
 package com.company;
 
-import java.util.*;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class TrieNode {
-    TreeMap<String, TrieNode> kid;
-    public TrieNode(String letter) {
-        // Note: letter isn't actually stored anywhere, it's only present for clarity.
-        kid = new TreeMap<String, TrieNode>();
+    char letter;
+    TreeMap<String, TrieNode> children;
+    static final char ROOT_LETTER = '*';
+    static final char END_OF_STRING_LETTER = '$';
+
+    public TrieNode(char aLetter) {
+        letter = aLetter;
+        children = new TreeMap<String, TrieNode>();
     }
     public int totalKids() {
-        return kid.size();
+        return children.size();
     }
     public TrieNode kidAtIndex(int index) {
         int i = 0;
-        for ( Map.Entry<String,TrieNode> e : kid.entrySet() ) {
+        for ( Map.Entry<String,TrieNode> e : children.entrySet() ) {
             if ( i == index ) return e.getValue();
             i++;
         }
         return null;
     }
-    public void add(String key, TrieNode node) {
-        kid.put(key,node);
+    public void addChildForLetter(char aLetter) {
+        String letter = ""+aLetter;
+        children.put(letter,new TrieNode(aLetter));
     }
-    public void addEndOfString() { kid.put("",new TrieNode("")); }
-    public boolean isEndOfString() { return kid.get("") != null; }
-    public TrieNode get(String key) {
-        return kid.get(key);
+    public TrieNode getChildForLetter(char aLetter) {
+        return children.get(""+aLetter);
     }
+    public void addEndOfStringChild() { addChildForLetter(END_OF_STRING_LETTER); }
+    public boolean hasEndOfStringChild() { return getChildForLetter(END_OF_STRING_LETTER) != null; }
 }

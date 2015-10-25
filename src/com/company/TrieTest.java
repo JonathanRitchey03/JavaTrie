@@ -2,6 +2,7 @@ package com.company;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class TrieTest {
@@ -9,14 +10,15 @@ public class TrieTest {
     @Test
     public void testConstructor() throws Exception {
         Trie t = new Trie();
+        assertNotNull(t);
     }
 
     @Test
     public void testInsertString() throws Exception {
         Trie t = new Trie();
         t.insertString("hi");
-        assertTrue("h in 'hi' is present", t.root.get("h") != null);
-        assertTrue("i in 'hi' is present", t.root.get("h").get("i") != null);
+        assertTrue("h in 'hi' is present", t.root.getChildForLetter('h') != null);
+        assertTrue("i in 'hi' is present", t.root.getChildForLetter('h').getChildForLetter('i') != null);
     }
 
     @Test
