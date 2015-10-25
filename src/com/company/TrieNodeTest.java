@@ -21,10 +21,10 @@ public class TrieNodeTest {
         root.addChildForLetter('a');
         root.addChildForLetter('b');
         root.addChildForLetter('c');
-        assertEquals(root.totalKids(), 3);
+        assertEquals(root.totalChildren(), 3);
 
         TrieNode emptyRoot = new TrieNode(TrieNode.ROOT_LETTER);
-        assertEquals(emptyRoot.totalKids(), 0);
+        assertEquals(emptyRoot.totalChildren(), 0);
     }
 
     @Test
@@ -33,19 +33,19 @@ public class TrieNodeTest {
         root.addChildForLetter('a');
         root.addChildForLetter('b');
         root.addChildForLetter('c');
-        assertTrue(root.kidAtIndex(0).letter == 'a');
-        assertTrue(root.kidAtIndex(1).letter == 'b');
-        assertTrue(root.kidAtIndex(2).letter == 'c');
-        assertNull(root.kidAtIndex(3));
+        assertTrue(root.childAtIndex(0).letter == 'a');
+        assertTrue(root.childAtIndex(1).letter == 'b');
+        assertTrue(root.childAtIndex(2).letter == 'c');
+        assertNull(root.childAtIndex(3));
     }
 
     @Test
     public void testAdd() throws Exception {
         TrieNode root = new TrieNode(TrieNode.ROOT_LETTER);
         root.addChildForLetter('a');
-        assertEquals(root.totalKids(), 1);
+        assertEquals(root.totalChildren(), 1);
         root.addChildForLetter('b');
-        assertEquals(root.totalKids(), 2);
+        assertEquals(root.totalChildren(), 2);
     }
 
     @Test

@@ -13,10 +13,10 @@ public class TrieNode {
         letter = aLetter;
         children = new TreeMap<String, TrieNode>();
     }
-    public int totalKids() {
+    public int totalChildren() {
         return children.size();
     }
-    public TrieNode kidAtIndex(int index) {
+    public TrieNode childAtIndex(int index) {
         int i = 0;
         for ( Map.Entry<String,TrieNode> e : children.entrySet() ) {
             if ( i == index ) return e.getValue();

@@ -33,11 +33,23 @@ public class Trie {
         printTrie(root,"");
     }
 
+    public void printStringsAlphabetically(TrieNode c, String word) {
+        if ( c.letter == TrieNode.END_OF_STRING_LETTER ) {
+            System.out.println(word);
+        } else {
+            for ( int i = 0; i < c.totalChildren(); i++ ) {
+                TrieNode n = c.childAtIndex(i);
+                printStringsAlphabetically(n, ""+n.letter);
+            }
+        }
+    }
+
     private void printTrie(TrieNode c, String indent) {
-        System.out.println(indent + c.letter);
+        String actualIndent = c == root ? "  " : indent + "└─";
+        System.out.println(actualIndent + c.letter);
         indent += "  ";
-        for ( int i = 0; i < c.totalKids(); i++ ) {
-            printTrie(c.kidAtIndex(i), indent);
+        for ( int i = 0; i < c.totalChildren(); i++ ) {
+            printTrie(c.childAtIndex(i), indent);
         }
     }
 }
